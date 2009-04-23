@@ -1,1 +1,4 @@
 * text=auto !eol
+/INSTALL.Metis -text
+/configure -text
+/get.Metis -text

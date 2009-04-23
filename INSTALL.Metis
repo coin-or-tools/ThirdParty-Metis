@@ -1,0 +1,39 @@
+Installation of the METIS graph partitioning software within COIN.
+
+METIS is software for Serial Graph Partitioning and Fill-reducing
+Matrix Ordering
+
+Please visit the home page:
+
+http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
+
+Information about conditions w.r.t. distribution can be found at
+
+http://glaros.dtc.umn.edu/gkhome/metis/metis/faq?q=metis/metis/faq#distribute
+
+**********************************************************************
+Note: It is YOUR RESPONSIBILITY to ensure that you are entitled to
+      download and use this third party package.
+**********************************************************************
+
+If you are working under Unix/Linux-like system and you have `wget'
+installed, you can downloaded the required source code for METIS
+by executing the included script `get.METIS' in this directory.
+
+If you don't have wget available, follow those instructions:
+
+Go to the METIS Download website
+
+http://glaros.dtc.umn.edu/gkhome/metis/metis/download
+
+and download the metis-4.0.tar.gz file.
+
+Unpack it in this directory:
+
+gunzip metis-4.0.tar.gz
+tar xf metis-4.0.tar
+
+Delete the tarball unless you want to keep it:
+
+rm metis-4.0.tar
+
