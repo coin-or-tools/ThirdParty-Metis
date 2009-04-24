@@ -66,6 +66,15 @@ fi
 AC_SUBST(MAKEOKFILE)
 AM_CONDITIONAL(SKIPMAKE, test -z "$MAKEOKFILE")
 
+# We need to create a dummy header file for Windows
+AC_MSG_CHECKING([whether we need to create a dummy strings.h file])
+if test $ac_cv_header_strings_h = no; then
+  AC_MSG_RESULT([yes])
+  touch strings.h
+else
+  AC_MSG_RESULT([no])
+fi
+
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 

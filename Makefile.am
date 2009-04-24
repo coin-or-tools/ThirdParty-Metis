@@ -86,6 +86,6 @@ DEFS =
 ########################################################################
 
 # Files that are generated and should be cleaned with make distclean
-DISTCLEANFILES = $(MAKEOKFILE)
+DISTCLEANFILES = $(MAKEOKFILE) strings.h
 
 include ../../BuildTools/Makemain.inc
