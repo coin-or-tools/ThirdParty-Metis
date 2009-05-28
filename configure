@@ -19958,7 +19958,7 @@ fi
 # We need to create a dummy header file for Windows
 echo "$as_me:$LINENO: checking whether we need to create a dummy strings.h file" >&5
 echo $ECHO_N "checking whether we need to create a dummy strings.h file... $ECHO_C" >&6
-if test $ac_cv_header_strings_h = no; then
+if test "$ac_cv_header_strings_h" = no; then
   echo "$as_me:$LINENO: result: yes" >&5
 echo "${ECHO_T}yes" >&6
   touch strings.h

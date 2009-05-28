@@ -68,7 +68,7 @@ AM_CONDITIONAL(SKIPMAKE, test -z "$MAKEOKFILE")
 
 # We need to create a dummy header file for Windows
 AC_MSG_CHECKING([whether we need to create a dummy strings.h file])
-if test $ac_cv_header_strings_h = no; then
+if test "$ac_cv_header_strings_h" = no; then
   AC_MSG_RESULT([yes])
   touch strings.h
 else
