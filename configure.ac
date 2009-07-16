@@ -12,7 +12,7 @@
 
 AC_PREREQ(2.59)
 
-AC_INIT([ThirdPartyMetis],[1.0stable],[http://projects.coin-or.org/BuildTools/newticket])
+AC_INIT([ThirdPartyMetis],[1.0trunk],[http://projects.coin-or.org/BuildTools/newticket])
 
 AC_COPYRIGHT([
 Copyright 2009 International Business Machines and others.
@@ -68,12 +68,17 @@ AM_CONDITIONAL(SKIPMAKE, test -z "$MAKEOKFILE")
 
 # We need to create a dummy header file for Windows
 AC_MSG_CHECKING([whether we need to create a dummy strings.h file])
-if test $ac_cv_header_strings_h = no; then
+if test "$ac_cv_header_strings_h" = no; then
   AC_MSG_RESULT([yes])
   touch strings.h
 else
   AC_MSG_RESULT([no])
 fi
+
+# On some systems, there are no drand48 and srand48.
+# By defining __VC__, we can make Metis use an alternative function
+AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
+      
 
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
