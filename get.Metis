@@ -33,6 +33,9 @@ tar xf metis-4.0.tar
 echo "Deleting the tar file..."
 rm metis-4.0.tar
 
+echo "Apply patch file..."
+patch -p0 < metis.patch
+
 echo " "
 echo "Done downloading the source code for METIS."
 echo " "

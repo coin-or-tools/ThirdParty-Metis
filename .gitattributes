@@ -2,3 +2,4 @@
 /INSTALL.Metis -text
 /configure -text
 /get.Metis -text
+/metis.patch -text
