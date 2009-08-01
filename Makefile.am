@@ -8,15 +8,12 @@ AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = get.metis INSTALL.METIS
 
-if SKIPMAKE
-  noinst_LTLIBRARIES =
-else
-  noinst_LTLIBRARIES = libcoinmetis.la
-endif
+thirdpartylibdir = $(prefix)/lib/ThirdParty
+thirdpartylib_LTLIBRARIES = libcoinmetis.la
 
 METISDIR = @METISDIR@
 
-nodist_libcoinmetis_la_SOURCES = \
+libcoinmetis_la_SOURCES = \
 	$(METISDIR)/Lib/balance.c \
 	$(METISDIR)/Lib/bucketsort.c \
 	$(METISDIR)/Lib/ccgraph.c \
@@ -75,8 +72,19 @@ DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
 AM_CPPFLAGS = \
 	-I`$(CYGPATH_W) $(srcdir)/$(METISDIR)/Lib`
 
-
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
+
+thirdpartyincludedir = $(includedir)/coin/ThirdParty
+thirdpartyinclude_HEADERS = \
+  $(METISDIR)/Lib/defs.h \
+  $(METISDIR)/Lib/macros.h \
+  $(METISDIR)/Lib/metis.h \
+  $(METISDIR)/Lib/proto.h \
+  $(METISDIR)/Lib/rename.h \
+  $(METISDIR)/Lib/struct.h
+
+addlibsdir = $(prefix)/share/doc/coin/ThirdParty/Metis
+addlibs_DATA = README metis_addlibs.txt
 
 # Suppress default defines from autoheader
 DEFS =

@@ -28,6 +28,8 @@
 #                    Documentation installation                        #
 ########################################################################
 
+
+
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -50,12 +52,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(am__configure_deps) \
+DIST_COMMON = README $(am__configure_deps) \
 	$(srcdir)/../../BuildTools/Makemain.inc \
 	$(srcdir)/../../config.guess $(srcdir)/../../config.sub \
 	$(srcdir)/../../depcomp $(srcdir)/../../install-sh \
 	$(srcdir)/../../ltmain.sh $(srcdir)/../../missing \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(srcdir)/metis_addlibs.txt.in $(thirdpartyinclude_HEADERS) \
 	$(top_srcdir)/configure
 @HAVE_EXTERNALS_TRUE@am__append_1 = Externals
 @HAVE_EXTERNALS_TRUE@am__append_2 = .Externals-stamp
@@ -68,10 +71,19 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES =
-LTLIBRARIES = $(noinst_LTLIBRARIES)
+CONFIG_CLEAN_FILES = metis_addlibs.txt
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+am__installdirs = "$(DESTDIR)$(thirdpartylibdir)" \
+	"$(DESTDIR)$(addlibsdir)" "$(DESTDIR)$(thirdpartyincludedir)"
+thirdpartylibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(thirdpartylib_LTLIBRARIES)
 libcoinmetis_la_LIBADD =
-nodist_libcoinmetis_la_OBJECTS = balance.lo bucketsort.lo ccgraph.lo \
+am_libcoinmetis_la_OBJECTS = balance.lo bucketsort.lo ccgraph.lo \
 	coarsen.lo compress.lo debug.lo estmem.lo fm.lo fortran.lo \
 	frename.lo graph.lo initpart.lo kmetis.lo kvmetis.lo kwayfm.lo \
 	kwayrefine.lo kwayvolfm.lo kwayvolrefine.lo match.lo \
@@ -82,8 +94,7 @@ nodist_libcoinmetis_la_OBJECTS = balance.lo bucketsort.lo ccgraph.lo \
 	ometis.lo parmetis.lo pmetis.lo pqueue.lo refine.lo \
 	separator.lo sfm.lo srefine.lo stat.lo subdomains.lo timing.lo \
 	util.lo
-libcoinmetis_la_OBJECTS = $(nodist_libcoinmetis_la_OBJECTS)
-@SKIPMAKE_FALSE@am_libcoinmetis_la_rpath =
+libcoinmetis_la_OBJECTS = $(am_libcoinmetis_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/../../depcomp
 am__depfiles_maybe = depfiles
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -94,8 +105,12 @@ LTCOMPILE = $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(nodist_libcoinmetis_la_SOURCES)
-DIST_SOURCES =
+SOURCES = $(libcoinmetis_la_SOURCES)
+DIST_SOURCES = $(libcoinmetis_la_SOURCES)
+addlibsDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(addlibs_DATA)
+thirdpartyincludeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(thirdpartyinclude_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -128,8 +143,6 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CDEFS = @CDEFS@
 CFLAGS = @CFLAGS@
-COIN_HAS_METIS_FALSE = @COIN_HAS_METIS_FALSE@
-COIN_HAS_METIS_TRUE = @COIN_HAS_METIS_TRUE@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
@@ -170,7 +183,6 @@ MAINT = @MAINT@
 MAINTAINER_MODE_FALSE = @MAINTAINER_MODE_FALSE@
 MAINTAINER_MODE_TRUE = @MAINTAINER_MODE_TRUE@
 MAKEINFO = @MAKEINFO@
-MAKEOKFILE = @MAKEOKFILE@
 METISDIR = @METISDIR@
 MPICC = @MPICC@
 OBJEXT = @OBJEXT@
@@ -186,8 +198,6 @@ RANLIB = @RANLIB@
 RPATH_FLAGS = @RPATH_FLAGS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
-SKIPMAKE_FALSE = @SKIPMAKE_FALSE@
-SKIPMAKE_TRUE = @SKIPMAKE_TRUE@
 STRIP = @STRIP@
 VERSION = @VERSION@
 VPATH_DISTCLEANFILES = @VPATH_DISTCLEANFILES@
@@ -246,9 +256,9 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = foreign
 EXTRA_DIST = get.metis INSTALL.METIS $(am__append_1)
-@SKIPMAKE_FALSE@noinst_LTLIBRARIES = libcoinmetis.la
-@SKIPMAKE_TRUE@noinst_LTLIBRARIES = 
-nodist_libcoinmetis_la_SOURCES = \
+thirdpartylibdir = $(prefix)/lib/ThirdParty
+thirdpartylib_LTLIBRARIES = libcoinmetis.la
+libcoinmetis_la_SOURCES = \
 	$(METISDIR)/Lib/balance.c \
 	$(METISDIR)/Lib/bucketsort.c \
 	$(METISDIR)/Lib/ccgraph.c \
@@ -307,6 +317,17 @@ AM_CPPFLAGS = \
 	-I`$(CYGPATH_W) $(srcdir)/$(METISDIR)/Lib`
 
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
+thirdpartyincludedir = $(includedir)/coin/ThirdParty
+thirdpartyinclude_HEADERS = \
+  $(METISDIR)/Lib/defs.h \
+  $(METISDIR)/Lib/macros.h \
+  $(METISDIR)/Lib/metis.h \
+  $(METISDIR)/Lib/proto.h \
+  $(METISDIR)/Lib/rename.h \
+  $(METISDIR)/Lib/struct.h
+
+addlibsdir = $(prefix)/share/doc/coin/ThirdParty/Metis
+addlibs_DATA = README metis_addlibs.txt
 
 ########################################################################
 #                         Maintainer Stuff                             #
@@ -354,17 +375,37 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(srcdir) && $(AUTOCONF)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
+metis_addlibs.txt: $(top_builddir)/config.status $(srcdir)/metis_addlibs.txt.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+install-thirdpartylibLTLIBRARIES: $(thirdpartylib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	test -z "$(thirdpartylibdir)" || $(mkdir_p) "$(DESTDIR)$(thirdpartylibdir)"
+	@list='$(thirdpartylib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    f=$(am__strip_dir) \
+	    echo " $(LIBTOOL) --mode=install $(thirdpartylibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(thirdpartylibdir)/$$f'"; \
+	    $(LIBTOOL) --mode=install $(thirdpartylibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(thirdpartylibdir)/$$f"; \
+	  else :; fi; \
+	done
 
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+uninstall-thirdpartylibLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	@set -x; list='$(thirdpartylib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(thirdpartylibdir)/$$p'"; \
+	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(thirdpartylibdir)/$$p"; \
+	done
+
+clean-thirdpartylibLTLIBRARIES:
+	-test -z "$(thirdpartylib_LTLIBRARIES)" || rm -f $(thirdpartylib_LTLIBRARIES)
+	@list='$(thirdpartylib_LTLIBRARIES)'; for p in $$list; do \
 	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
 	  test "$$dir" != "$$p" || dir=.; \
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
 libcoinmetis.la: $(libcoinmetis_la_OBJECTS) $(libcoinmetis_la_DEPENDENCIES) 
-	$(LINK) $(am_libcoinmetis_la_rpath) $(libcoinmetis_la_LDFLAGS) $(libcoinmetis_la_OBJECTS) $(libcoinmetis_la_LIBADD) $(LIBS)
+	$(LINK) -rpath $(thirdpartylibdir) $(libcoinmetis_la_LDFLAGS) $(libcoinmetis_la_OBJECTS) $(libcoinmetis_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -819,6 +860,40 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool
 uninstall-info-am:
+install-addlibsDATA: $(addlibs_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(addlibsdir)" || $(mkdir_p) "$(DESTDIR)$(addlibsdir)"
+	@list='$(addlibs_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(addlibsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(addlibsdir)/$$f'"; \
+	  $(addlibsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(addlibsdir)/$$f"; \
+	done
+
+uninstall-addlibsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(addlibs_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(addlibsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(addlibsdir)/$$f"; \
+	done
+install-thirdpartyincludeHEADERS: $(thirdpartyinclude_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(thirdpartyincludedir)" || $(mkdir_p) "$(DESTDIR)$(thirdpartyincludedir)"
+	@list='$(thirdpartyinclude_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(thirdpartyincludeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(thirdpartyincludedir)/$$f'"; \
+	  $(thirdpartyincludeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(thirdpartyincludedir)/$$f"; \
+	done
+
+uninstall-thirdpartyincludeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(thirdpartyinclude_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(thirdpartyincludedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(thirdpartyincludedir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -871,7 +946,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/../.. $(distdir)/../../BuildTools
+	$(mkdir_p) $(distdir)/$(METISDIR)/Lib $(distdir)/. $(distdir)/../.. $(distdir)/../../BuildTools
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -997,8 +1072,11 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
+	for dir in "$(DESTDIR)$(thirdpartylibdir)" "$(DESTDIR)$(addlibsdir)" "$(DESTDIR)$(thirdpartyincludedir)"; do \
+	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
+	done
 install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
@@ -1026,7 +1104,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-noinstLTLIBRARIES \
+clean-am: clean-generic clean-libtool clean-thirdpartylibLTLIBRARIES \
 	mostlyclean-am
 
 distclean: distclean-am
@@ -1046,7 +1124,8 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-addlibsDATA install-thirdpartyincludeHEADERS \
+	install-thirdpartylibLTLIBRARIES
 
 install-exec-am:
 
@@ -1076,21 +1155,27 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-info-am
+uninstall-am: uninstall-addlibsDATA uninstall-info-am \
+	uninstall-thirdpartyincludeHEADERS \
+	uninstall-thirdpartylibLTLIBRARIES
 
 .PHONY: CTAGS GTAGS all all-am am--refresh check check-am clean \
-	clean-generic clean-libtool clean-noinstLTLIBRARIES ctags dist \
-	dist-all dist-bzip2 dist-gzip dist-shar dist-tarZ dist-zip \
-	distcheck distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-tags distcleancheck distdir \
-	distuninstallcheck dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am install-man \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-info-am
+	clean-generic clean-libtool clean-thirdpartylibLTLIBRARIES \
+	ctags dist dist-all dist-bzip2 dist-gzip dist-shar dist-tarZ \
+	dist-zip distcheck distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-tags \
+	distcleancheck distdir distuninstallcheck dvi dvi-am html \
+	html-am info info-am install install-addlibsDATA install-am \
+	install-data install-data-am install-exec install-exec-am \
+	install-info install-info-am install-man install-strip \
+	install-thirdpartyincludeHEADERS \
+	install-thirdpartylibLTLIBRARIES installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-addlibsDATA uninstall-am uninstall-info-am \
+	uninstall-thirdpartyincludeHEADERS \
+	uninstall-thirdpartylibLTLIBRARIES
 
 
 install-doc: $(DocFiles)
