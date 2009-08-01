@@ -1,5 +1,7 @@
 * text=auto !eol
 /INSTALL.Metis -text
+/README -text
 /configure -text
 /get.Metis -text
 /metis.patch -text
+/metis_addlibs.txt.in -text
