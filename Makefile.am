@@ -86,6 +86,9 @@ thirdpartyinclude_HEADERS = \
 addlibsdir = $(prefix)/share/doc/coin/ThirdParty/Metis
 addlibs_DATA = README metis_addlibs.txt
 
+pkgconfiglibdir = $(prefix)/lib/ThirdParty/pkgconfig
+pkgconfiglib_DATA = metis.pc
+
 # Suppress default defines from autoheader
 DEFS =
 
