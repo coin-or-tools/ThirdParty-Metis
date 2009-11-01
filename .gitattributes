@@ -3,5 +3,7 @@
 /README -text
 /configure -text
 /get.Metis -text
+/metis-uninstalled.pc.in -text
 /metis.patch -text
+/metis.pc.in -text
 /metis_addlibs.txt.in -text

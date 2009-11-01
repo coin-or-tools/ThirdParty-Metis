@@ -54,7 +54,7 @@ AC_COIN_PROG_CC
 AC_COIN_INIT_AUTO_TOOLS
 
 # ## Check if Metis is already provided by user
-# AC_COIN_HAS_METIS
+AC_COIN_HAS_PROJECT(Metis)
 
 #rm -f $MAKEOKFILE
 #if test $coin_has_metis = yes && test "$use_metis" != BUILD; then
@@ -82,6 +82,6 @@ AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 
-AC_CONFIG_FILES([Makefile metis_addlibs.txt])
+AC_CONFIG_FILES([Makefile metis_addlibs.txt metis.pc metis-uninstalled.pc])
 
 AC_COIN_FINALIZE

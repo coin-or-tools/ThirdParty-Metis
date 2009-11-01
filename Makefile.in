@@ -58,6 +58,7 @@ DIST_COMMON = README $(am__configure_deps) \
 	$(srcdir)/../../depcomp $(srcdir)/../../install-sh \
 	$(srcdir)/../../ltmain.sh $(srcdir)/../../missing \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(srcdir)/metis-uninstalled.pc.in $(srcdir)/metis.pc.in \
 	$(srcdir)/metis_addlibs.txt.in $(thirdpartyinclude_HEADERS) \
 	$(top_srcdir)/configure
 @HAVE_EXTERNALS_TRUE@am__append_1 = Externals
@@ -71,7 +72,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = metis_addlibs.txt
+CONFIG_CLEAN_FILES = metis_addlibs.txt metis.pc metis-uninstalled.pc
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -143,6 +144,10 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CDEFS = @CDEFS@
 CFLAGS = @CFLAGS@
+COIN_HAS_METIS_FALSE = @COIN_HAS_METIS_FALSE@
+COIN_HAS_METIS_PREINSTALLED_FALSE = @COIN_HAS_METIS_PREINSTALLED_FALSE@
+COIN_HAS_METIS_PREINSTALLED_TRUE = @COIN_HAS_METIS_PREINSTALLED_TRUE@
+COIN_HAS_METIS_TRUE = @COIN_HAS_METIS_TRUE@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
@@ -183,7 +188,12 @@ MAINT = @MAINT@
 MAINTAINER_MODE_FALSE = @MAINTAINER_MODE_FALSE@
 MAINTAINER_MODE_TRUE = @MAINTAINER_MODE_TRUE@
 MAKEINFO = @MAKEINFO@
+METISDATADIR = @METISDATADIR@
 METISDIR = @METISDIR@
+METISDOCDIR = @METISDOCDIR@
+METISINSTDIR = @METISINSTDIR@
+METISOBJDIR = @METISOBJDIR@
+METISSRCDIR = @METISSRCDIR@
 MPICC = @MPICC@
 OBJEXT = @OBJEXT@
 OPT_CFLAGS = @OPT_CFLAGS@
@@ -376,6 +386,10 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 metis_addlibs.txt: $(top_builddir)/config.status $(srcdir)/metis_addlibs.txt.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+metis.pc: $(top_builddir)/config.status $(srcdir)/metis.pc.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+metis-uninstalled.pc: $(top_builddir)/config.status $(srcdir)/metis-uninstalled.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-thirdpartylibLTLIBRARIES: $(thirdpartylib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
