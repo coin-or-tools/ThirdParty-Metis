@@ -4,6 +4,6 @@ includedir=${prefix}/include/coin/ThirdParty
 
 Name: Metis
 Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
-Version: @PACKAGE_VERSION@
+Version: 4.0
 Libs: -L${libdir} -lcoinmetis @ADDLIBS@
 Cflags: -I${includedir}
