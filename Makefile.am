@@ -8,7 +8,7 @@ AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = get.metis INSTALL.METIS
 
-thirdpartylibdir = $(prefix)/lib/ThirdParty
+thirdpartylibdir = $(libdir)/coin/ThirdParty
 thirdpartylib_LTLIBRARIES = libcoinmetis.la
 
 METISDIR = @METISDIR@
@@ -83,11 +83,11 @@ thirdpartyinclude_HEADERS = \
   $(METISDIR)/Lib/rename.h \
   $(METISDIR)/Lib/struct.h
 
-addlibsdir = $(prefix)/share/doc/coin/ThirdParty/Metis
+addlibsdir = $(datadir)/coin/doc/ThirdParty/Metis
 addlibs_DATA = README metis_addlibs.txt
 
-pkgconfiglibdir = $(prefix)/lib/ThirdParty/pkgconfig
-pkgconfiglib_DATA = metis.pc
+pkgconfiglibdir = $(libdir)/pkgconfig
+pkgconfiglib_DATA = coinmetis.pc
 
 # Suppress default defines from autoheader
 DEFS =

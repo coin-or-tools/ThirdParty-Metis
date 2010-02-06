@@ -69,6 +69,6 @@ AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 
-AC_CONFIG_FILES([Makefile metis_addlibs.txt metis.pc metis-uninstalled.pc])
+AC_CONFIG_FILES([Makefile metis_addlibs.txt coinmetis.pc coinmetis-uninstalled.pc])
 
 AC_COIN_FINALIZE

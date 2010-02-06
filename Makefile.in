@@ -58,9 +58,9 @@ DIST_COMMON = README $(am__configure_deps) \
 	$(srcdir)/../../depcomp $(srcdir)/../../install-sh \
 	$(srcdir)/../../ltmain.sh $(srcdir)/../../missing \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/metis-uninstalled.pc.in $(srcdir)/metis.pc.in \
-	$(srcdir)/metis_addlibs.txt.in $(thirdpartyinclude_HEADERS) \
-	$(top_srcdir)/configure
+	$(srcdir)/coinmetis-uninstalled.pc.in \
+	$(srcdir)/coinmetis.pc.in $(srcdir)/metis_addlibs.txt.in \
+	$(thirdpartyinclude_HEADERS) $(top_srcdir)/configure
 @HAVE_EXTERNALS_TRUE@am__append_1 = Externals
 @HAVE_EXTERNALS_TRUE@am__append_2 = .Externals-stamp
 subdir = .
@@ -72,7 +72,8 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = metis_addlibs.txt metis.pc metis-uninstalled.pc
+CONFIG_CLEAN_FILES = metis_addlibs.txt coinmetis.pc \
+	coinmetis-uninstalled.pc
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -260,7 +261,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = foreign
 EXTRA_DIST = get.metis INSTALL.METIS $(am__append_1)
-thirdpartylibdir = $(prefix)/lib/ThirdParty
+thirdpartylibdir = $(libdir)/coin/ThirdParty
 thirdpartylib_LTLIBRARIES = libcoinmetis.la
 libcoinmetis_la_SOURCES = \
 	$(METISDIR)/Lib/balance.c \
@@ -330,10 +331,10 @@ thirdpartyinclude_HEADERS = \
   $(METISDIR)/Lib/rename.h \
   $(METISDIR)/Lib/struct.h
 
-addlibsdir = $(prefix)/share/doc/coin/ThirdParty/Metis
+addlibsdir = $(datadir)/coin/doc/ThirdParty/Metis
 addlibs_DATA = README metis_addlibs.txt
-pkgconfiglibdir = $(prefix)/lib/ThirdParty/pkgconfig
-pkgconfiglib_DATA = metis.pc
+pkgconfiglibdir = $(libdir)/pkgconfig
+pkgconfiglib_DATA = coinmetis.pc
 
 ########################################################################
 #                         Maintainer Stuff                             #
@@ -383,9 +384,9 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 metis_addlibs.txt: $(top_builddir)/config.status $(srcdir)/metis_addlibs.txt.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-metis.pc: $(top_builddir)/config.status $(srcdir)/metis.pc.in
+coinmetis.pc: $(top_builddir)/config.status $(srcdir)/coinmetis.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-metis-uninstalled.pc: $(top_builddir)/config.status $(srcdir)/metis-uninstalled.pc.in
+coinmetis-uninstalled.pc: $(top_builddir)/config.status $(srcdir)/coinmetis-uninstalled.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-thirdpartylibLTLIBRARIES: $(thirdpartylib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)

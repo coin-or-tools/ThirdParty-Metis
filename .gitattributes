@@ -1,9 +1,9 @@
 * text=auto !eol
 /INSTALL.Metis -text
 /README -text
+/coinmetis-uninstalled.pc.in -text
+/coinmetis.pc.in -text
 /configure -text
 /get.Metis -text
-/metis-uninstalled.pc.in -text
 /metis.patch -text
-/metis.pc.in -text
 /metis_addlibs.txt.in -text

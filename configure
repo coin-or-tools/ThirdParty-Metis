@@ -19921,7 +19921,7 @@ fi
 METISDIR=metis-4.0
 
 
-                                        ac_config_files="$ac_config_files Makefile metis_addlibs.txt metis.pc metis-uninstalled.pc"
+                                        ac_config_files="$ac_config_files Makefile metis_addlibs.txt coinmetis.pc coinmetis-uninstalled.pc"
 
 
 
@@ -20596,8 +20596,8 @@ do
   # Handling of arguments.
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
   "metis_addlibs.txt" ) CONFIG_FILES="$CONFIG_FILES metis_addlibs.txt" ;;
-  "metis.pc" ) CONFIG_FILES="$CONFIG_FILES metis.pc" ;;
-  "metis-uninstalled.pc" ) CONFIG_FILES="$CONFIG_FILES metis-uninstalled.pc" ;;
+  "coinmetis.pc" ) CONFIG_FILES="$CONFIG_FILES coinmetis.pc" ;;
+  "coinmetis-uninstalled.pc" ) CONFIG_FILES="$CONFIG_FILES coinmetis-uninstalled.pc" ;;
   "depfiles" ) CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
