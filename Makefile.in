@@ -344,7 +344,7 @@ pkgconfiglib_DATA = coinmetis.pc
 DISTCLEANFILES = $(MAKEOKFILE) strings.h $(am__append_2) \
 	$(VPATH_DISTCLEANFILES)
 DocFiles = README AUTHORS LICENSE
-DocInstallDir = $(prefix)/share/doc/coin/$(PACKAGE_NAME)
+DocInstallDir = $(datadir)/coin/doc/$(PACKAGE_NAME)
 all: all-am
 
 .SUFFIXES:
