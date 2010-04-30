@@ -50,6 +50,9 @@ AC_COIN_DEBUG_COMPILE(Metis)
 # Get the name of the C compiler
 AC_COIN_PROG_CC
 
+# Check if pkg-config is available (to setup addlibs file)
+AC_COIN_HAS_PKGCONFIG
+
 # Initialize automake
 AC_COIN_INIT_AUTO_TOOLS
 
@@ -69,6 +72,6 @@ AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 
-AC_CONFIG_FILES([Makefile metis_addlibs.txt coinmetis.pc coinmetis-uninstalled.pc])
+AC_CONFIG_FILES([Makefile coinmetis.pc coinmetis-uninstalled.pc])
 
 AC_COIN_FINALIZE

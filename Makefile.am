@@ -83,8 +83,13 @@ thirdpartyinclude_HEADERS = \
   $(METISDIR)/Lib/rename.h \
   $(METISDIR)/Lib/struct.h
 
+if COIN_HAS_PKGCONFIG
 addlibsdir = $(datadir)/coin/doc/ThirdParty/Metis
-addlibs_DATA = README metis_addlibs.txt
+addlibs_DATA = metis_addlibs.txt
+
+metis_addlibs.txt : coinmetis.pc
+	PKG_CONFIG_PATH=.:$(libdir)/pkgconfig:${PKG_CONFIG_PATH} $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
+endif
 
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinmetis.pc
@@ -95,6 +100,8 @@ DEFS =
 ########################################################################
 #                         Maintainer Stuff                             #
 ########################################################################
+
+CLEANFILES = metis_addlibs.txt
 
 # Files that are generated and should be cleaned with make distclean
 DISTCLEANFILES = $(MAKEOKFILE) strings.h
