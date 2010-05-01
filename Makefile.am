@@ -88,7 +88,7 @@ addlibsdir = $(datadir)/coin/doc/ThirdParty/Metis
 addlibs_DATA = metis_addlibs.txt
 
 metis_addlibs.txt : coinmetis.pc
-	PKG_CONFIG_PATH=.:$(libdir)/pkgconfig:${PKG_CONFIG_PATH} $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
+	PKG_CONFIG_PATH=.:@COIN_PKG_CONFIG_PATH@ $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
 endif
 
 pkgconfiglibdir = $(libdir)/pkgconfig

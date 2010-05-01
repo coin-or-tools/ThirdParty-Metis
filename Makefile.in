@@ -149,6 +149,7 @@ CDEFS = @CDEFS@
 CFLAGS = @CFLAGS@
 COIN_HAS_PKGCONFIG_FALSE = @COIN_HAS_PKGCONFIG_FALSE@
 COIN_HAS_PKGCONFIG_TRUE = @COIN_HAS_PKGCONFIG_TRUE@
+COIN_PKG_CONFIG_PATH = @COIN_PKG_CONFIG_PATH@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
@@ -1212,7 +1213,7 @@ uninstall-am: uninstall-addlibsDATA uninstall-info-am \
 
 
 @COIN_HAS_PKGCONFIG_TRUE@metis_addlibs.txt : coinmetis.pc
-@COIN_HAS_PKGCONFIG_TRUE@	PKG_CONFIG_PATH=.:$(libdir)/pkgconfig:${PKG_CONFIG_PATH} $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
+@COIN_HAS_PKGCONFIG_TRUE@	PKG_CONFIG_PATH=.:@COIN_PKG_CONFIG_PATH@ $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
 
 install-doc: $(DocFiles)
 	test -z "$(DocInstallDir)" || $(mkdir_p) "$(DESTDIR)$(DocInstallDir)"
