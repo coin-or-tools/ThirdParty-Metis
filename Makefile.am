@@ -8,15 +8,12 @@ AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = get.metis INSTALL.METIS
 
-if SKIPMAKE
-  noinst_LTLIBRARIES =
-else
-  noinst_LTLIBRARIES = libcoinmetis.la
-endif
+thirdpartylibdir = $(libdir)/coin/ThirdParty
+thirdpartylib_LTLIBRARIES = libcoinmetis.la
 
 METISDIR = @METISDIR@
 
-nodist_libcoinmetis_la_SOURCES = \
+libcoinmetis_la_SOURCES = \
 	$(METISDIR)/Lib/balance.c \
 	$(METISDIR)/Lib/bucketsort.c \
 	$(METISDIR)/Lib/ccgraph.c \
@@ -75,8 +72,27 @@ DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
 AM_CPPFLAGS = \
 	-I`$(CYGPATH_W) $(srcdir)/$(METISDIR)/Lib`
 
-
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
+
+thirdpartyincludedir = $(includedir)/coin/ThirdParty
+thirdpartyinclude_HEADERS = \
+  $(METISDIR)/Lib/defs.h \
+  $(METISDIR)/Lib/macros.h \
+  $(METISDIR)/Lib/metis.h \
+  $(METISDIR)/Lib/proto.h \
+  $(METISDIR)/Lib/rename.h \
+  $(METISDIR)/Lib/struct.h
+
+if COIN_HAS_PKGCONFIG
+addlibsdir = $(datadir)/coin/doc/ThirdParty/Metis
+addlibs_DATA = metis_addlibs.txt
+
+metis_addlibs.txt : coinmetis.pc
+	PKG_CONFIG_PATH=.:@COIN_PKG_CONFIG_PATH@ $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
+endif
+
+pkgconfiglibdir = $(libdir)/pkgconfig
+pkgconfiglib_DATA = coinmetis.pc
 
 # Suppress default defines from autoheader
 DEFS =
@@ -84,6 +100,8 @@ DEFS =
 ########################################################################
 #                         Maintainer Stuff                             #
 ########################################################################
+
+CLEANFILES = metis_addlibs.txt
 
 # Files that are generated and should be cleaned with make distclean
 DISTCLEANFILES = $(MAKEOKFILE) strings.h

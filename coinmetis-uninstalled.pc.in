@@ -1,0 +1,8 @@
+prefix=@prefix@
+libdir=@ABSBUILDDIR@
+
+Name: Metis
+Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
+Version: 4.0
+Libs: -L${libdir} -lcoinmetis @ADDLIBS@
+Cflags: -I@abs_source_dir@/@METISDIR@/Lib

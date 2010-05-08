@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@/coin/ThirdParty
+includedir=@includedir@/coin/ThirdParty
+
+Name: Metis
+Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
+Version: 4.0
+Libs: -L${libdir} -lcoinmetis @ADDLIBS@
+Cflags: -I${includedir}

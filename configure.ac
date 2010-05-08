@@ -50,21 +50,11 @@ AC_COIN_DEBUG_COMPILE(Metis)
 # Get the name of the C compiler
 AC_COIN_PROG_CC
 
+# Check if pkg-config is available (to setup addlibs file)
+AC_COIN_HAS_PKGCONFIG
+
 # Initialize automake
 AC_COIN_INIT_AUTO_TOOLS
-
-# ## Check if Metis is already provided by user
-AC_COIN_HAS_METIS
-
-rm -f $MAKEOKFILE
-if test $coin_has_metis = yes && test "$use_metis" != BUILD; then
-  AC_MSG_NOTICE([The Metis sources don't need to be compiled])
-  MAKEOKFILE=
-else
-  touch $MAKEOKFILE
-fi
-AC_SUBST(MAKEOKFILE)
-AM_CONDITIONAL(SKIPMAKE, test -z "$MAKEOKFILE")
 
 # We need to create a dummy header file for Windows
 AC_MSG_CHECKING([whether we need to create a dummy strings.h file])
@@ -78,11 +68,10 @@ fi
 # On some systems, there are no drand48 and srand48.
 # By defining __VC__, we can make Metis use an alternative function
 AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
-      
 
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile coinmetis.pc coinmetis-uninstalled.pc])
 
 AC_COIN_FINALIZE

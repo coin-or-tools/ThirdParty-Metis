@@ -1,5 +1,7 @@
 * text=auto !eol
 /INSTALL.Metis -text
+/coinmetis-uninstalled.pc.in -text
+/coinmetis.pc.in -text
 /configure -text
 /get.Metis -text
 /metis.patch -text
