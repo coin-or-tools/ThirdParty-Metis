@@ -106,4 +106,4 @@ CLEANFILES = metis_addlibs.txt
 # Files that are generated and should be cleaned with make distclean
 DISTCLEANFILES = $(MAKEOKFILE) strings.h
 
-include ../../BuildTools/Makemain.inc
+include BuildTools/Makemain.inc
