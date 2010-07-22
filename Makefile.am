@@ -83,16 +83,17 @@ thirdpartyinclude_HEADERS = \
   $(METISDIR)/Lib/rename.h \
   $(METISDIR)/Lib/struct.h
 
-if COIN_HAS_PKGCONFIG
-addlibsdir = $(datadir)/coin/doc/ThirdParty/Metis
-addlibs_DATA = metis_addlibs.txt
-
-metis_addlibs.txt : coinmetis.pc
-	PKG_CONFIG_PATH=.:@COIN_PKG_CONFIG_PATH@ $(PKG_CONFIG) --libs coinmetis > metis_addlibs.txt
-endif
-
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinmetis.pc
+
+if COIN_HAS_PKGCONFIG
+addlibsdir = $(DESTDIR)$(datadir)/coin/doc/ThirdParty/Metis
+	
+install-data-hook:
+	@$(mkdir_p) "$(addlibsdir)"
+	PKG_CONFIG_PATH=@COIN_PKG_CONFIG_PATH@ PKG_CONFIG_DISABLE_UNINSTALLED= \
+	$(PKG_CONFIG) --libs coinmetis > $(addlibsdir)/metis_addlibs.txt
+endif
 
 # Suppress default defines from autoheader
 DEFS =
