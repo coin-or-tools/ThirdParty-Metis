@@ -93,6 +93,9 @@ install-data-hook:
 	@$(mkdir_p) "$(addlibsdir)"
 	PKG_CONFIG_PATH=@COIN_PKG_CONFIG_PATH@ \
 	$(PKG_CONFIG) --libs coinmetis > $(addlibsdir)/metis_addlibs.txt
+	
+uninstall-hook:
+	rm -f $(addlibsdir)/metis_addlibs.txt
 endif
 
 # Suppress default defines from autoheader
@@ -102,7 +105,7 @@ DEFS =
 #                         Maintainer Stuff                             #
 ########################################################################
 
-CLEANFILES = metis_addlibs.txt
+CLEANFILES =
 
 # Files that are generated and should be cleaned with make distclean
 DISTCLEANFILES = $(MAKEOKFILE) strings.h
