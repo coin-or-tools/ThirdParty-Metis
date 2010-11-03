@@ -98,6 +98,9 @@ uninstall-hook:
 	rm -f $(addlibsdir)/metis_addlibs.txt
 endif
 
+test: $(libampl)
+	@echo "No test available for Metis."
+
 # Suppress default defines from autoheader
 DEFS =
 
