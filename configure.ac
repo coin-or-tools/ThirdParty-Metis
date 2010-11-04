@@ -30,7 +30,7 @@ AC_CONFIG_SRCDIR(metis-4.0/Lib/balance.c)
 # /usr/local.
 AC_PREFIX_DEFAULT([`pwd`])
 
-AC_COIN_PROJECTDIR_INIT(Metis,2:0:2)
+AC_COIN_PROJECTDIR_INIT(Metis,2:0:1)
 
 #############################################################################
 #                         Standard build tool stuff                         #
