@@ -8,8 +8,7 @@ AUTOMAKE_OPTIONS = foreign
 
 EXTRA_DIST = get.metis INSTALL.METIS
 
-thirdpartylibdir = $(libdir)/coin/ThirdParty
-thirdpartylib_LTLIBRARIES = libcoinmetis.la
+lib_LTLIBRARIES = libcoinmetis.la
 
 METISDIR = @METISDIR@
 
