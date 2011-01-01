@@ -5,6 +5,7 @@ includedir=@includedir@/coin/ThirdParty
 
 Name: Metis
 Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
+URL: https://projects.coin-or.org/BuildTools
 Version: 4.0
 Libs: -L${libdir} -lcoinmetis
 Cflags: -I${includedir}
