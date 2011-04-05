@@ -9,5 +9,4 @@
 /get.Metis -text
 /install-sh -text
 /ltmain.sh -text
-/metis.patch -text
 /missing -text
