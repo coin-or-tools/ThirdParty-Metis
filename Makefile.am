@@ -85,19 +85,7 @@ thirdpartyinclude_HEADERS = \
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinmetis.pc
 
-if COIN_HAS_PKGCONFIG
-addlibsdir = $(DESTDIR)$(datadir)/coin/doc/ThirdParty/Metis
-	
-install-data-hook:
-	@$(mkdir_p) "$(addlibsdir)"
-	PKG_CONFIG_PATH=@COIN_PKG_CONFIG_PATH@ \
-	$(PKG_CONFIG) --libs coinmetis > $(addlibsdir)/metis_addlibs.txt
-	
-uninstall-hook:
-	rm -f $(addlibsdir)/metis_addlibs.txt
-endif
-
-test: $(libampl)
+test:
 	@echo "No test available for Metis."
 
 # Suppress default defines from autoheader
