@@ -4,6 +4,6 @@ libdir=@ABSBUILDDIR@
 Name: Metis
 Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
 URL: https://projects.coin-or.org/BuildTools
-Version: 4.0
+Version: @PACKAGE_VERSION@
 Libs: ${libdir}/libcoinmetis.la
 Cflags: -I@abs_source_dir@/@METISDIR@/Lib
