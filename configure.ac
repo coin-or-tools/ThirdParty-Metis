@@ -56,14 +56,8 @@ AC_COIN_HAS_PKGCONFIG
 # Initialize automake
 AC_COIN_INIT_AUTO_TOOLS
 
-# We need to create a dummy header file for Windows
-AC_MSG_CHECKING([whether we need to create a dummy strings.h file])
-if test "$ac_cv_header_strings_h" = no; then
-  AC_MSG_RESULT([yes])
-  touch strings.h
-else
-  AC_MSG_RESULT([no])
-fi
+# We may need to create a dummy header file for Windows
+AC_CHECK_HEADER([strings.h], [], [touch strings.h])
 
 # On some systems, there are no drand48 and srand48.
 # By defining __VC__, we can make Metis use an alternative function
