@@ -27,22 +27,22 @@ If you don't have wget available, follow those instructions:
 
 Go to the METIS Download website
 
-http://glaros.dtc.umn.edu/gkhome/metis/metis/download
+http://glaros.dtc.umn.edu/gkhome/fsroot/sw/metis/OLD
 
-and download the metis-4.0.tar.gz file.
+and download the metis-4.0.3.tar.gz file.
 
 Unpack it in this directory:
 
-gunzip metis-4.0.tar.gz
-tar xf metis-4.0.tar
+gunzip metis-4.0.3.tar.gz
+tar xf metis-4.0.3.tar
 
 Rename the extracted directory:
 
-mv metis-4.0.? metis-4.0
+mv metis-4.0.3 metis-4.0
 
 Delete the tarball unless you want to keep it:
 
-rm metis-4.0.tar
+rm metis-4.0.3.tar
 
 ==========================================================================
 
