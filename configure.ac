@@ -12,7 +12,7 @@
 
 AC_PREREQ(2.59)
 
-AC_INIT([ThirdPartyMetis],[1.2],[http://projects.coin-or.org/BuildTools/newticket])
+AC_INIT([ThirdPartyMetis],[1.2.4],[http://projects.coin-or.org/BuildTools/newticket])
 
 AC_COPYRIGHT([
 Copyright 2009 International Business Machines and others.
@@ -30,7 +30,7 @@ AC_CONFIG_SRCDIR(metis-4.0/Lib/balance.c)
 # /usr/local.
 AC_PREFIX_DEFAULT([`pwd`])
 
-AC_COIN_PROJECTDIR_INIT(Metis)
+AC_COIN_PROJECTDIR_INIT(Metis,3:4:2)
 
 #############################################################################
 #                         Standard build tool stuff                         #
