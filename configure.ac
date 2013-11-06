@@ -56,6 +56,9 @@ AC_COIN_HAS_PKGCONFIG
 # Initialize automake
 AC_COIN_INIT_AUTO_TOOLS
 
+# Metis depends on libm
+AC_COIN_CHECK_LIBM
+
 # We may need to create a dummy header file for Windows
 AC_CHECK_HEADER([strings.h], [], [touch strings.h])
 
