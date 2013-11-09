@@ -57,7 +57,7 @@ AC_COIN_HAS_PKGCONFIG
 AC_COIN_INIT_AUTO_TOOLS
 
 # Metis depends on libm
-AC_COIN_CHECK_LIBM
+AC_COIN_CHECK_LIBM(Metis)
 
 # We may need to create a dummy header file for Windows
 AC_CHECK_HEADER([strings.h], [], [touch strings.h])
@@ -70,5 +70,7 @@ METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 
 AC_CONFIG_FILES([Makefile coinmetis.pc coinmetis-uninstalled.pc])
+
+AC_SUBST(METIS_PCLIBS)
 
 AC_COIN_FINALIZE
