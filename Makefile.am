@@ -71,6 +71,10 @@ DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
 AM_CPPFLAGS = \
 	-I`$(CYGPATH_W) $(srcdir)/$(METISDIR)/Lib`
 
+if DEPENDENCY_LINKING
+libcoinmetis_la_LIBADD = $(METIS_PCLIBS)
+endif
+
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
 
 thirdpartyincludedir = $(includedir)/coin/ThirdParty
