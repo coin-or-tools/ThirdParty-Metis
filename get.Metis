@@ -33,6 +33,9 @@ gunzip metis-4.0.3.tar.gz
 echo "Unpacking the source code..."
 tar xf metis-4.0.3.tar
 
+echo "Applying a patch..."
+patch -p0 < metis.patch
+
 echo "Renaming directory to match source code name..."
 mv metis-4.0.? metis-4.0
 
