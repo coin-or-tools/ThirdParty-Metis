@@ -43,6 +43,18 @@ AC_CHECK_HEADER([strings.h], [], [touch strings.h])
 # By defining __VC__, we can make Metis use an alternative function
 AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
 
+# Since libtool gets initalized with win32-dll, we need to explicitly say
+# which symbols should be exported when building Windows DLLs.
+# The metis source doesn't support anything, so specify the metis_nodend
+# symbol(s) in the LDFLAGS
+if test "$enable_shared" = yes ; then
+  case $build_os in
+    cygwin* | mingw* | msys* | cegcc* )
+      LDFLAGS="$LDFLAGS -Wl,-EXPORT:metis_nodend -Wl,-EXPORT:metis_nodend_ -Wl,-EXPORT:METIS_NODEND -Wl,-EXPORT:METIS_NodeND"
+    ;;
+  esac
+fi
+
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 
