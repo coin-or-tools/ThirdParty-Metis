@@ -41,7 +41,7 @@ AC_CHECK_HEADER([strings.h], [], [touch strings.h])
 
 # On some systems, there are no drand48 and srand48.
 # By defining __VC__, we can make Metis use an alternative function
-AC_CHECK_FUNC(drand48,,[METIS_CFLAGS="$METIS_CFLAGS -D__VC__"])
+AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
 
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)

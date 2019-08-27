@@ -488,7 +488,7 @@ libcoinmetis_la_SOURCES = \
 	$(METISDIR)/Lib/timing.c \
 	$(METISDIR)/Lib/util.c
 
-AM_CPPFLAGS = -I$(srcdir)/$(METISDIR)/Lib $(METIS_CFLAGS)
+AM_CPPFLAGS = -I$(srcdir)/$(METISDIR)/Lib $(CFLAGS)
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
 thirdpartyincludedir = $(includedir)/coin-or/metis
 thirdpartyinclude_HEADERS = \

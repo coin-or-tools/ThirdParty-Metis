@@ -12540,7 +12540,7 @@ ac_fn_c_check_func "$LINENO" "drand48" "ac_cv_func_drand48"
 if test "x$ac_cv_func_drand48" = xyes; then :
 
 else
-  METIS_CFLAGS="$METIS_CFLAGS -D__VC__"
+  CFLAGS="$CFLAGS -D__VC__"
 fi
 
 
