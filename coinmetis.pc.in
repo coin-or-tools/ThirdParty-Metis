@@ -1,11 +1,12 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
-includedir=@includedir@/coin/ThirdParty
+includedir=@includedir@/coin-or/metis
 
 Name: Metis
 Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
-URL: https://projects.coin-or.org/BuildTools
+URL: https://github.com/coin-or-tools/ThirdParty-Metis
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lcoinmetis
+Libs.private: @METIS_LFLAGS_NOPC@
 Cflags: -I${includedir}

@@ -2,9 +2,7 @@
 # All Rights Reserved.
 # This file is distributed under the Eclipse Public License.
 
-## $Id$
-
-AUTOMAKE_OPTIONS = foreign
+AUTOMAKE_OPTIONS = foreign subdir-objects
 
 EXTRA_DIST = get.metis INSTALL.METIS
 
@@ -66,18 +64,11 @@ libcoinmetis_la_SOURCES = \
 	$(METISDIR)/Lib/timing.c \
 	$(METISDIR)/Lib/util.c
 
-DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
-
-AM_CPPFLAGS = \
-	-I`$(CYGPATH_W) $(srcdir)/$(METISDIR)/Lib`
-
-if DEPENDENCY_LINKING
-libcoinmetis_la_LIBADD = $(METIS_PCLIBS)
-endif
+AM_CPPFLAGS = -I$(srcdir)/$(METISDIR)/Lib $(METIS_CFLAGS)
 
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
 
-thirdpartyincludedir = $(includedir)/coin/ThirdParty
+thirdpartyincludedir = $(includedir)/coin-or/metis
 thirdpartyinclude_HEADERS = \
   $(METISDIR)/Lib/defs.h \
   $(METISDIR)/Lib/macros.h \

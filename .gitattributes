@@ -1,7 +1,7 @@
 * text=auto !eol
 /INSTALL.Metis -text
-/coinmetis-uninstalled.pc.in -text
 /coinmetis.pc.in -text
+/compile -text
 /config.guess -text
 /config.sub -text
 /configure -text
