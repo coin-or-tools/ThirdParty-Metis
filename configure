@@ -9644,12 +9644,12 @@ fi
 
     cygwin* | mingw* | pw32* | cegcc*)
       # When not using gcc, we currently assume that we are using
-      # Microsoft Visual C++ or Intel C++ Compiler.
+      # Microsoft Visual C++ or Intel C++/Fortran Compiler.
       # hardcode_libdir_flag_spec is actually meaningless, as there is
       # no search path for DLLs.
       case $cc_basename in
-      cl* | icl*)
-	# Native MSVC or ICC
+      cl* | icl*| ifort*)
+	# Native MSVC or ICC or IFORT
 	hardcode_libdir_flag_spec=' '
 	allow_undefined_flag=unsupported
 	always_export_symbols=yes
@@ -9690,7 +9690,7 @@ fi
           fi'
 	;;
       *)
-	# Assume MSVC and ICC wrapper
+	# Assume MSVC and ICC and IFORT wrapper
 	hardcode_libdir_flag_spec=' '
 	allow_undefined_flag=unsupported
 	# Tell ltmain to make .lib files, not .a files.
