@@ -646,6 +646,8 @@ LIBOBJS
 METIS_CFLAGS_NOPC
 METIS_LFLAGS_NOPC
 METISDIR
+INSTALL_STRINGS_H_FALSE
+INSTALL_STRINGS_H_TRUE
 METIS_LFLAGS
 LT_LDFLAGS
 CPP
@@ -12219,6 +12221,14 @@ else
 fi
 
 
+ if test -f strings.h; then
+  INSTALL_STRINGS_H_TRUE=
+  INSTALL_STRINGS_H_FALSE='#'
+else
+  INSTALL_STRINGS_H_TRUE='#'
+  INSTALL_STRINGS_H_FALSE=
+fi
+
 
 # On some systems, there are no drand48 and srand48.
 # By defining __VC__, we can make Metis use an alternative function
@@ -12463,6 +12473,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${INSTALL_STRINGS_H_TRUE}" && test -z "${INSTALL_STRINGS_H_FALSE}"; then
+  as_fn_error $? "conditional \"INSTALL_STRINGS_H\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 

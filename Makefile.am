@@ -77,11 +77,13 @@ thirdpartyinclude_HEADERS = \
   $(METISDIR)/Lib/rename.h \
   $(METISDIR)/Lib/struct.h
 
+# if we generated strings.h, then also install it for users of metis.h (like Mumps5)
+if INSTALL_STRINGS_H
+  thirdpartyinclude_HEADERS += strings.h
+endif
+
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinmetis.pc
-
-test:
-	@echo "No test available for Metis."
 
 # Suppress default defines from autoheader
 DEFS =

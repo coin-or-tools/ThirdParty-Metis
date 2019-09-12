@@ -39,6 +39,7 @@ AC_COIN_CHK_LIBM(Metis)
 
 # We may need to create a dummy header file for Windows
 AC_CHECK_HEADER([strings.h], [], [touch strings.h])
+AM_CONDITIONAL(INSTALL_STRINGS_H, test -f strings.h)
 
 # On some systems, there are no drand48 and srand48.
 # By defining __VC__, we can make Metis use an alternative function

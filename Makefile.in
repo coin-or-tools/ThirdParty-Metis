@@ -107,13 +107,16 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+
+# if we generated strings.h, then also install it for users of metis.h (like Mumps5)
+@INSTALL_STRINGS_H_TRUE@am__append_1 = strings.h
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
-	$(am__configure_deps) $(thirdpartyinclude_HEADERS)
+	$(am__configure_deps) $(am__thirdpartyinclude_HEADERS_DIST)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
@@ -280,6 +283,10 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(pkgconfiglib_DATA)
+am__thirdpartyinclude_HEADERS_DIST = $(METISDIR)/Lib/defs.h \
+	$(METISDIR)/Lib/macros.h $(METISDIR)/Lib/metis.h \
+	$(METISDIR)/Lib/proto.h $(METISDIR)/Lib/rename.h \
+	$(METISDIR)/Lib/struct.h strings.h
 HEADERS = $(thirdpartyinclude_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -487,14 +494,10 @@ libcoinmetis_la_SOURCES = \
 AM_CPPFLAGS = -I$(srcdir)/$(METISDIR)/Lib $(CFLAGS)
 libcoinmetis_la_LDFLAGS = $(LT_LDFLAGS)
 thirdpartyincludedir = $(includedir)/coin-or/metis
-thirdpartyinclude_HEADERS = \
-  $(METISDIR)/Lib/defs.h \
-  $(METISDIR)/Lib/macros.h \
-  $(METISDIR)/Lib/metis.h \
-  $(METISDIR)/Lib/proto.h \
-  $(METISDIR)/Lib/rename.h \
-  $(METISDIR)/Lib/struct.h
-
+thirdpartyinclude_HEADERS = $(METISDIR)/Lib/defs.h \
+	$(METISDIR)/Lib/macros.h $(METISDIR)/Lib/metis.h \
+	$(METISDIR)/Lib/proto.h $(METISDIR)/Lib/rename.h \
+	$(METISDIR)/Lib/struct.h $(am__append_1)
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinmetis.pc
 
@@ -1154,9 +1157,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-pkgconfiglibDATA \
 
 .PRECIOUS: Makefile
 
-
-test:
-	@echo "No test available for Metis."
 
 doxygen-docs: 
 	if test "$(COIN_HAS_DOXYGEN)" = TRUE; then \
