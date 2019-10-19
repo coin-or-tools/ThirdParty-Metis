@@ -10,7 +10,7 @@
 
 AC_PREREQ(2.59)
 
-AC_INIT([ThirdPartyMetis],[trunk],[https://github.com/coin-or-tools/ThirdParty-Metis/issues/new],,[https://github.com/coin-or-tools/ThirdParty-Metis])
+AC_INIT([ThirdPartyMetis],[2.0.0],[https://github.com/coin-or-tools/ThirdParty-Metis/issues/new],,[https://github.com/coin-or-tools/ThirdParty-Metis])
 
 AC_COPYRIGHT([
 Copyright 2009 International Business Machines and others.
