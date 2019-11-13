@@ -1,0 +1,2 @@
+* text=auto !eol
+/metis-4.0.3.tar.gz -text svneol=unset#application/gzip
