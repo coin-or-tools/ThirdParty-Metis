@@ -1,5 +1,6 @@
 * text=auto !eol
 /INSTALL.Metis -text
+/LICENSE -text
 /coinmetis.pc.in -text
 /compile -text
 /config.guess -text
