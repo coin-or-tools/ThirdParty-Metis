@@ -85,16 +85,8 @@ endif
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinmetis.pc
 
+test:
+	@echo "No test available for Metis."
+
 # Suppress default defines from autoheader
 DEFS =
-
-########################################################################
-#                         Maintainer Stuff                             #
-########################################################################
-
-CLEANFILES =
-
-# Files that are generated and should be cleaned with make distclean
-DISTCLEANFILES = $(MAKEOKFILE) strings.h
-
-include BuildTools/Makemain.inc
