@@ -2,8 +2,6 @@
 # All Rights Reserved.
 # This file is distributed under the Eclipse Public License.
 
-AUTOMAKE_OPTIONS = foreign subdir-objects
-
 EXTRA_DIST = get.metis INSTALL.METIS
 
 lib_LTLIBRARIES = libcoinmetis.la

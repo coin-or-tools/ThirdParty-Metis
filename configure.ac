@@ -22,7 +22,7 @@ under the Eclipse Public License.])
 # whether the package is actually there
 AC_CONFIG_SRCDIR(metis-4.0/Lib/balance.c)
 
-AC_COIN_INITIALIZE(Metis)
+AC_COIN_INITIALIZE
 
 #############################################################################
 #                         Standard build tool stuff                         #
