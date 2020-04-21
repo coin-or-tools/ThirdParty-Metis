@@ -8,6 +8,6 @@ Name: Metis
 Description: Serial Graph Partitioning and Fill-reducing Matrix Ordering
 URL: https://github.com/coin-or-tools/ThirdParty-Metis
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lcoinmetis
-Libs.private: @METIS_LFLAGS_NOPC@
 Cflags: -I${includedir}
+@COIN_STATIC_BUILD_FALSE@Libs: -L${libdir} -lcoinmetis
+@COIN_STATIC_BUILD_TRUE@Libs: -L${libdir} -lcoinmetis @METIS_LFLAGS_NOPC@
