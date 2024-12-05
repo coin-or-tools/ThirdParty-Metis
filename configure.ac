@@ -45,6 +45,9 @@ AM_CONDITIONAL(INSTALL_STRINGS_H, test -f strings.h)
 # By defining __VC__, we can make Metis use an alternative function
 AC_CHECK_FUNC(drand48,,[CFLAGS="$CFLAGS -D__VC__"])
 
+# avoid error regarding implicit declaration of function '__GKfree' with gcc 14 (#3)
+case $CC in *gcc*) CFLAGS="$CFLAGS -fpermissive" ;; esac
+
 METISDIR=metis-4.0
 AC_SUBST(METISDIR)
 

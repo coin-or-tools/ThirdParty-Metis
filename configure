@@ -12872,6 +12872,8 @@ else $as_nop
 fi
 
 
+case $CC in *gcc*) CFLAGS="$CFLAGS -fpermissive" ;; esac
+
 METISDIR=metis-4.0
 
 
