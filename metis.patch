@@ -32,3 +32,16 @@
      }
 
      /* Allocate memory for the compressed graph*/
+--- metis-4.0.3/Lib/proto.h	2026-02-02 12:00:00.000000000 +0100
++++ metis-4.0.3/Lib/proto.h	2026-02-02 12:00:00.000000000 +0100
+@@ -432,7 +432,9 @@
+ idxtype *idxsmalloc(int, idxtype, char *);
+ void *GKmalloc(int, char *);
+ #endif
+-/*void GKfree(void **,...); */
++/* CRITICAL: This prototype MUST be declared for ARM64 compatibility.
++   Without it, the variadic calling convention is not used, causing heap corruption on Apple Silicon. */
++void GKfree(void **,...);
+ int *iset(int n, int val, int *x);
+ idxtype *idxset(int n, idxtype val, idxtype *x);
+ float *sset(int n, float val, float *x);
